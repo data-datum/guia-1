@@ -1,0 +1,83 @@
+---
+title: "guia-1"
+author: "roxana"
+date: "25 de agosto de 2019"
+output: html_document
+---
+
+# Tema 1. Estadística - Uso de Rstudio
+
+## Ejercicio 1
+
+### Ingresar los datos correspondientes a gaseosas.
+
+```{r cars}
+gaseosas <- read.csv("~/data/gaseosas.csv", sep=";")
+gaseosas
+```
+
+### ¿Cuáles son los países con mayor y menor consumo de gaseosa?
+
+```{r }
+data <- gaseosas[order(gaseosas$consumo),]
+data
+```
+
+### Ordenar los datos de manera ascendente
+```{r }
+```
+
+### Gráfico de barras por países. 
+
+```{r }
+barplot(data$consumo, 
+        ylim = c(0, 140),
+        names.arg = data$pais, 
+        las = 2,
+        cex.names = 0.6)
+```
+
+### Modificamos la escala Y
+
+```{r  }
+barplot(data$consumo, 
+        ylim = c(0, 300),
+        names.arg = data$pais, 
+        las = 2,
+        cex.names = 0.6)
+```
+
+### Transformación de variables
+#### logaritmo base 10
+```{r  }
+logaritmo <- log10(data$consumo)
+data2 <- cbind(data, logaritmo)
+data2
+```
+#### raiz cuadrada
+```{r  }
+raiz_cuadrada <- sqrt(data$consumo)
+data3 <- cbind(data2, raiz_cuadrada)
+data3
+```
+
+## Volvemos a graficar
+### Logaritmo 10
+
+```{r  }
+barplot(logaritmo, 
+        ylim = c(0, 2.50),
+        names.arg = data$pais, 
+        las = 2,
+        cex.names = 0.6)
+```
+
+### Raiz cuadrada
+```{r  }
+barplot(raiz_cuadrada, 
+        ylim = c(0, 12),
+        names.arg = data$pais, 
+        las = 2,
+        cex.names = 0.6)
+```
+
